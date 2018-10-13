@@ -1,0 +1,17 @@
+version: '3'
+services:
+    app:
+        build: stacks/app
+        ports:
+            - 8000:80
+        environment:
+            ENV: local
+        volumes:
+            - ./html/:/var/www/html/
+        tty:
+            true
+        links:
+            - memcached
+
+    memcached:
+        image: memcached:1.4
